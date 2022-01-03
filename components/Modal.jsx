@@ -10,11 +10,12 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState('test');
   const [price, setPrice] = useState('');
-  const [capacity, setCapacity] = useState('');
+  const [capacity, setCapacity] = useState('test');
   const [thumbnail, setThumbnail] = useState('');
   const [gallery, setGallery] = useState('');
+  const [lesson, setLesson] = useState('');
 
   const cancelButtonRef = useRef(null);
 
@@ -35,6 +36,10 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     setGallery(media);
   };
 
+  const handleLessonUpload = (media) => {
+    setLesson(media);
+  };
+
   const submitVenue = () => {
     if (
       !title ||
@@ -44,7 +49,8 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
       !capacity ||
       !thumbnail ||
       !gallery[0] ||
-      !gallery[1]
+      !gallery[1] ||
+      !lesson
     ) {
       alert('Enter valid fields');
       return;
@@ -62,6 +68,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('thumbnail', thumbnail[0]);
     formData.append('gallery-1', gallery[0]);
     formData.append('gallery-2', gallery[1]);
+    formData.append('lesson', lesson[0]);
 
     API.post('/venue', formData)
       .then((res) => {
@@ -159,7 +166,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                     Write a few sentences about your course.
                   </p>
                 </div>
-                <div className="sm:col-span-6">
+                {/* <div className="sm:col-span-6">
                   <label
                     htmlFor="address"
                     className="block text-sm font-medium text-gray-700"
@@ -179,7 +186,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                   <p className="mt-2 text-sm text-gray-500">
                     Write down adress of your venue
                   </p>
-                </div>
+                </div> */}
                 <div className="sm:col-span-4">
                   <label
                     htmlFor="price"
@@ -198,7 +205,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-4">
+                {/* <div className="sm:col-span-4">
                   <label
                     htmlFor="capacity"
                     className="block text-sm font-medium text-gray-700"
@@ -215,7 +222,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                       onChange={(e) => setCapacity(e.target.value)}
                     />
                   </div>
-                </div>
+                </div> */}
                 <div className="sm:col-span-6">
                   <label
                     htmlFor="thumbnail"
@@ -239,6 +246,18 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                   <MediaUpload
                     handleMediaUpload={handleMediaUpload}
                     mediaCount={2}
+                  />
+                </div>
+                <div className="sm:col-span-6">
+                  <label
+                    htmlFor="lesson"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Lesson
+                  </label>
+                  <MediaUpload
+                    handleMediaUpload={handleLessonUpload}
+                    mediaCount={1}
                   />
                 </div>
               </form>
