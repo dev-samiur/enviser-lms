@@ -50,7 +50,6 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
       return;
     }
     hideModal();
-		console.log('here')
 
     let formData = new FormData();
 
