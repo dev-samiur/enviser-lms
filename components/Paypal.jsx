@@ -73,11 +73,11 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
       },
     })
       .then((response) => {
-        if (response.data.success) alert('Successfully booked');
-        else alert('Error booking the venue');
+        if (response.data.success) alert('Successfully enrolled');
+        else alert('Error enrolling the course');
       })
       .catch((err) => {
-        alert('Error booking the venue');
+        alert('Error enrolling the course');
       });
   };
 
@@ -90,15 +90,15 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
         flexDirection="column"
       >
         <Typography variant="h5">
-          Congrats, you just booked {venueTitle} at {date}
+          Congrats, you just enrolled {venueTitle}
         </Typography>
         <Button
-          onClick={(e) => router.back()}
+          onClick={(e) => router.push('/dashboard')}
           style={{ marginTop: 20 }}
           variant="contained"
           color="primary"
         >
-          Go Back
+          Go To Dashboard
         </Button>
       </Box>
     );

@@ -112,7 +112,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
               <form className="space-y-8">
                 <div>
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
-                    Venue
+                    Course
                   </h3>
                   <p className="mt-1 text-sm text-gray-500">
                     This information will be displayed publicly so be careful
@@ -124,7 +124,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Venue Title
+                    Course Title
                   </label>
                   <div className="mt-1">
                     <input
@@ -156,7 +156,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
-                    Write a few sentences about your venue.
+                    Write a few sentences about your course.
                   </p>
                 </div>
                 <div className="sm:col-span-6">
@@ -248,7 +248,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
                   onClick={() => submitVenue()}
                 >
-                  Add Venue
+                  Add Course
                 </button>
                 <button
                   type="button"

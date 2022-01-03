@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicTable({rows}) {
+export default function BasicTable({ rows }) {
   const [searched, setSearched] = useState('');
   const classes = useStyles();
 
@@ -49,8 +49,8 @@ export default function BasicTable({rows}) {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Venue</TableCell>
-                <TableCell align="center">Booked By</TableCell>
+                <TableCell>Course</TableCell>
+                <TableCell align="center">Enrolled By</TableCell>
                 <TableCell align="center">Date</TableCell>
               </TableRow>
             </TableHead>

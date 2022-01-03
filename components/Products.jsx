@@ -11,7 +11,7 @@ const Products = ({ products }) => {
     <div className="bg-white mt-20">
       <div className="max-w-7xl mx-auto overflow-hidden sm:px-6 lg:px-8">
         <h2 className="mt-20 mb-20 text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
-					Venues
+          Courses
         </h2>
 
         <div className="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
@@ -40,9 +40,7 @@ const Products = ({ products }) => {
                       <StarIcon
                         key={rating}
                         className={classNames(
-                          3.5 > rating
-                            ? 'text-yellow-400'
-                            : 'text-gray-200',
+                          3.5 > rating ? 'text-yellow-400' : 'text-gray-200',
                           'flex-shrink-0 h-5 w-5'
                         )}
                         aria-hidden="true"

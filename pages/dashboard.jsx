@@ -109,15 +109,14 @@ const Dashboard = ({ products, bookings }) => {
     if (parseInt(localStorage.getItem('type')) === 2) {
       setNavigation([
         { name: 'Dashboard', href: '#', current: true },
-        { name: 'Add Venue', href: '#', current: false },
-        { name: 'Add Slot', href: '#', current: false },
-        { name: 'Venues', href: '/', current: false },
+        { name: 'Add Course', href: '#', current: false },
+        { name: 'Courses', href: '/', current: false },
       ]);
     } else {
       setOpenTab(2);
       setNavigation([
         { name: 'Dashboard', href: '#', current: true },
-        { name: 'Venues', href: '/', current: false },
+        { name: 'Courses', href: '/', current: false },
       ]);
     }
   }, []);
@@ -161,7 +160,7 @@ const Dashboard = ({ products, bookings }) => {
     return (
       <div>
         <Head>
-          <title>Venue Q - Dashboard</title>
+          <title>Enviser LMS - Dashboard</title>
         </Head>
         <Modal
           showAddVenueForm={showAddVenueForm}
@@ -205,7 +204,7 @@ const Dashboard = ({ products, bookings }) => {
                                   'rounded-md py-2 px-3 text-sm font-medium text-white cursor-pointer'
                                 )}
                                 onClick={
-                                  item.name === 'Add Venue'
+                                  item.name === 'Add Course'
                                     ? () => setShowAddVenueForm(true)
                                     : item.name === 'Add Slot'
                                     ? () => setShowAddSlotForm(true)
@@ -422,7 +421,7 @@ const Dashboard = ({ products, bookings }) => {
               <header className="relative py-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <h1 className="text-3xl font-bold text-white">
-                    VenueQ Dashboard
+                    Enviser LMS Dashboard
                   </h1>
                 </div>
               </header>
@@ -445,7 +444,7 @@ const Dashboard = ({ products, bookings }) => {
                             : 'text-indigo-600 bg-white')
                         }
                       >
-                        <span onClick={() => setOpenTab(1)}>Venues</span>
+                        <span onClick={() => setOpenTab(1)}>Courses</span>
                       </Tab>
                     )}
                     <Tab
@@ -456,7 +455,7 @@ const Dashboard = ({ products, bookings }) => {
                           : 'text-indigo-600 bg-white')
                       }
                     >
-                      <span onClick={() => setOpenTab(2)}>Schedule</span>
+                      <span onClick={() => setOpenTab(2)}>Enrolls</span>
                     </Tab>
                     {parseInt(localStorage.getItem('type')) === 2 && (
                       <Tab

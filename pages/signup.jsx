@@ -43,7 +43,7 @@ const SignUp = () => {
     return (
       <>
         <Head>
-          <title>Venue Q - Signup</title>
+          <title>Enviser LMS - Signup</title>
         </Head>
         <div className="min-h-full h-screen w-full flex">
           <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">

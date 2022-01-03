@@ -30,9 +30,9 @@ const Product = ({ product, slots }) => {
   return (
     <div className="bg-white">
       <Head>
-        <title>Venue Q - Venue Details</title>
+        <title>Enviser LMS - Course Details</title>
       </Head>
-      <div className="pt-6 pb-16 sm:pb-24">
+      <div className="pt-6 pb-5 sm:pb-0">
         <nav
           aria-label="Breadcrumb"
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -48,14 +48,6 @@ const Product = ({ product, slots }) => {
                   {product.price} BDT
                 </p>
               </div>
-              <div className="flex justify-between mt-5">
-                <h3 className="text-xl font-medium text-gray-900">
-                  {product.address}
-                </h3>
-                <p className="text-lg font-medium text-gray-900">
-                  Capacity: {product.capacity}
-                </p>
-              </div>
               {/* Reviews */}
               <div className="mt-4">
                 <h2 className="sr-only">Reviews</h2>
@@ -69,9 +61,7 @@ const Product = ({ product, slots }) => {
                       <StarIcon
                         key={rating}
                         className={classNames(
-                          3.5 > rating
-                            ? 'text-yellow-400'
-                            : 'text-gray-200',
+                          3.5 > rating ? 'text-yellow-400' : 'text-gray-200',
                           'h-5 w-5 flex-shrink-0'
                         )}
                         aria-hidden="true"
@@ -111,25 +101,7 @@ const Product = ({ product, slots }) => {
                 />
               </div>
             </div>
-            <div className="sm:col-span-4">
-              <label htmlFor="email" className="block text-lg font-medium">
-                Slot:
-              </label>
-              <div className="mt-2">
-                {slots.length ? (
-                  <select onChange={(e) => setSelectedSlot(e.target.value)}>
-                    {slots.map((slot) => (
-                      <option value={slot.date} key={slot.date}>
-                        {slot.date}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <span className="text-red-900">Sorry no available slots</span>
-                )}
-              </div>
-            </div>
-            <div className="mt-8 lg:col-span-5">
+            <div className="lg:col-span-5" style={{marginTop: 150}}>
               {canBook && (
                 <form>
                   <Link
@@ -150,7 +122,7 @@ const Product = ({ product, slots }) => {
                       className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       disabled={slots.length ? false : true}
                     >
-                      Book the venue
+                      Enroll Course
                     </button>
                   </Link>
                 </form>
@@ -176,12 +148,8 @@ const Product = ({ product, slots }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const resVenue = await API.get(
-    '/venue/' + params.id
-  );
-  const resSlots = await API.get(
-    '/slot/' + params.id
-  );
+  const resVenue = await API.get('/venue/' + params.id);
+  const resSlots = await API.get('/slot/' + params.id);
   return {
     props: { product: resVenue.data.success, slots: resSlots.data.success },
   };

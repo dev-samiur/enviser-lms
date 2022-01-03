@@ -11,14 +11,14 @@ const Checkout = () => {
   return (
     <div className="bg-gray-50 h-screen">
 			<Head>
-				<title>Venue Q - Booking</title>
+				<title>Enviser LMS - Booking</title>
 			</Head>
       <div className="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
         <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
           {/* Order summary */}
           <div className="mt-10 lg:mt-0">
-            <h2 className="text-lg font-medium text-gray-900">Venue Summary</h2>
+            <h2 className="text-lg font-medium text-gray-900">Course Summary</h2>
 
             <div className="mt-4 bg-white border border-gray-200 rounded-lg shadow-sm">
               <h3 className="sr-only">Items in your cart</h3>
@@ -37,7 +37,7 @@ const Checkout = () => {
                       <div className="min-w-0 flex-1">
                         <h4 className="text-sm">
                           <span className="font-medium text-gray-700 hover:text-gray-800">
-                            Venue: {venueTitle}
+                            Course: {venueTitle}
                           </span>
                         </h4>
                       </div>
@@ -51,11 +51,6 @@ const Checkout = () => {
                           <TrashIcon className="h-5 w-5" aria-hidden="true" />
                         </button>
                       </div>
-                    </div>
-                    <div className="flex-1 pt-2 flex items-end justify-between">
-                      <p className="mt-1 text-sm font-medium text-gray-900">
-                        Capacity: {capacity}
-                      </p>
                     </div>
                     <div className="flex-1 pt-2 flex items-end justify-between">
                       <p className="mt-1 text-sm font-medium text-gray-900">

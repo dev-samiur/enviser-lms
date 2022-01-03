@@ -12,7 +12,7 @@ export default function Home({ products }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Venue Q</title>
+        <title>Enviser LMS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -21,7 +21,7 @@ export default function Home({ products }) {
         <div id="about"></div>
         <About />
         <Stats />
-        <div id="venues"></div>
+        <div id="courses"></div>
         <Products products={products} />
         <CTA />
         <div id="contact"></div>

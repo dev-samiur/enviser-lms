@@ -50,7 +50,7 @@ const SignIn = () => {
       <>
         <div className="min-h-full h-screen w-full flex">
           <Head>
-            <title>Venue Q - Signin</title>
+            <title>Enviser LMS - Signin</title>
           </Head>
           <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="mx-auto w-full max-w-sm lg:w-96">
