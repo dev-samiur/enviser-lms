@@ -98,12 +98,20 @@ const Venues = ({ products }) => {
 };
 
 const Dashboard = ({ products, bookings }) => {
+  // console.log(products);
+  // console.log(bookings);
   const [showAddVenueForm, setShowAddVenueForm] = useState(false);
   const [showAddSlotForm, setShowAddSlotForm] = useState(false);
   const [openTab, setOpenTab] = useState(1);
   const [venues, setVenues] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [navigation, setNavigation] = useState([]);
+
+  // const test = []
+
+  // bookings.forEach(booking => {
+
+  // })
 
   useEffect(() => {
     if (parseInt(localStorage.getItem('type')) === 2) {
@@ -123,11 +131,28 @@ const Dashboard = ({ products, bookings }) => {
 
   useEffect(() => {
     if (products) {
-      setVenues(
-        products.filter(
-          (product) => product.owner === localStorage.getItem('userId')
-        )
-      );
+      if (localStorage.getItem('type') === 2) {
+        setVenues(
+          products.filter(
+            (product) => product.owner === localStorage.getItem('userId')
+          )
+        );
+      } else {
+        const bookedByCurrUser = bookings.filter(
+          (booking) => booking.user === localStorage.getItem('email')
+        );
+
+        let coursesEnrolledByCurrUser = bookedByCurrUser.map(
+          (item) => item.venue
+        );
+        const filteredProducts = [];
+        coursesEnrolledByCurrUser = [...new Set(coursesEnrolledByCurrUser)];
+        products.forEach((product) => {
+          const exist = coursesEnrolledByCurrUser.includes(product.title);
+          if (!exist) filteredProducts.push(product);
+        });
+        setVenues(filteredProducts);
+      }
     }
   }, [products]);
 
@@ -435,18 +460,16 @@ const Dashboard = ({ products, bookings }) => {
               <nav className="space-y-1 ml-5">
                 <Tab.Group>
                   <Tab.List className="flex flex-col items-start">
-                    {parseInt(localStorage.getItem('type')) === 2 && (
-                      <Tab
-                        className={
-                          'w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
-                          (openTab === 1
-                            ? 'text-white bg-indigo-600'
-                            : 'text-indigo-600 bg-white')
-                        }
-                      >
-                        <span onClick={() => setOpenTab(1)}>Courses</span>
-                      </Tab>
-                    )}
+                    <Tab
+                      className={
+                        'w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                        (openTab === 1
+                          ? 'text-white bg-indigo-600'
+                          : 'text-indigo-600 bg-white')
+                      }
+                    >
+                      <span onClick={() => setOpenTab(1)}>Courses</span>
+                    </Tab>
                     <Tab
                       className={
                         'mt-5 w-60 text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
