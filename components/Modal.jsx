@@ -64,7 +64,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('address', address);
     formData.append('price', price);
     formData.append('capacity', capacity);
-    formData.append('owner', localStorage.getItem('userId'));
+    formData.append('owner', parseInt(localStorage.getItem('userId')));
     formData.append('thumbnail', thumbnail[0]);
     formData.append('gallery-1', gallery[0]);
     formData.append('gallery-2', gallery[1]);

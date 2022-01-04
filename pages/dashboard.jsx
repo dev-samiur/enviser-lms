@@ -29,14 +29,22 @@ function classNames(...classes) {
 
 const Venues = ({ products }) => {
   const router = useRouter();
+	const [showDeleteBtn, setShowDeleteBtn] = useState(false)
+
+	useEffect(() => {
+		if(parseInt(localStorage.getItem('type')) === 2)
+			setShowDeleteBtn(true)
+	}, [])
 
   const handleDelete = (id) => {
     API.delete('/course/' + id)
       .then((res) => {
         if (res.data.success) {
-          alert('Venue deleted successfully');
-          products = products.filter((product) => product.id !== id);
+          alert('course deleted successfully');
+					router.reload(window.location.pathname);
+          //products = products.filter((product) => product.id !== id);
         }
+				else console.log(res.data)
       })
       .catch((err) => console.log('Error'));
   };
@@ -84,14 +92,16 @@ const Venues = ({ products }) => {
                 {product.price} BDT
               </p>
             </div>
-            {/* <div>
-            <button
-              className="ml-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleDelete(product._id)}
-            >
-              Delete
-            </button>
-          </div> */}
+            {showDeleteBtn && (
+              <div>
+                <button
+                  className="ml-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => handleDelete(product.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         ))}
     </div>
@@ -127,7 +137,8 @@ const Dashboard = ({ products, bookings }) => {
       if (parseInt(localStorage.getItem('type')) === 2) {
         setVenues(
           products.filter(
-            (product) => product.owner === localStorage.getItem('userId')
+            (product) =>
+              product.owner === parseInt(localStorage.getItem('userId'))
           )
         );
       } else {
