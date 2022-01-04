@@ -1,5 +1,5 @@
 # Enviser LMS
-Enviser LMS is the ultimate online platform for next generation event execution!
+Enviser LMS is the ultimate minimalist online education platform
 
 ## Features
 - ▲ Based on latest [Next.js](https://github.com/zeit/next.js)
