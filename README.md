@@ -1,5 +1,5 @@
-# VenueQ
-VenueQ is the ultimate online platform for next generation event execution!
+# Enviser LMS
+Enviser LMS is the ultimate online platform for next generation event execution!
 
 ## Features
 - ▲ Based on latest [Next.js](https://github.com/zeit/next.js)
@@ -8,8 +8,8 @@ VenueQ is the ultimate online platform for next generation event execution!
 
 ## Getting started
 ```
-git clone https://github.com/dev-samiur/venuepedia
-cd venuepedia
+git clone https://github.com/dev-samiur/enviser-lms
+cd enviser-lms
 yarn install
 yarn run dev
 ```
