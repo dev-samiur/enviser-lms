@@ -139,8 +139,8 @@ const SignUp = () => {
                             else setType(1);
                           }}
                         >
-                          <option value="Customer">Customer</option>
-                          <option value="Venue Owner">Venue Owner</option>
+                          <option value="Customer">Student</option>
+                          <option value="Venue Owner">Mentor</option>
                         </select>
                       </div>
                     </div>

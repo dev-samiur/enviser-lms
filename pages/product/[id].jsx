@@ -148,7 +148,7 @@ const Product = ({ product, slots }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const resVenue = await API.get('/venue/' + params.id);
+  const resVenue = await API.get('/course/' + params.id);
   const resSlots = await API.get('/slot/' + params.id);
   return {
     props: { product: resVenue.data.success, slots: resSlots.data.success },

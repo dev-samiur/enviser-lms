@@ -70,7 +70,7 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
     formData.append('gallery-2', gallery[1]);
     formData.append('lesson', lesson[0]);
 
-    API.post('/venue', formData)
+    API.post('/course', formData)
       .then((res) => {
         alert('Successfully added');
         router.reload(window.location.pathname);

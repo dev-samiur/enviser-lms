@@ -31,7 +31,7 @@ const Venues = ({ products }) => {
   const router = useRouter();
 
   const handleDelete = (id) => {
-    API.delete('/venue/' + id)
+    API.delete('/course/' + id)
       .then((res) => {
         if (res.data.success) {
           alert('Venue deleted successfully');
@@ -106,12 +106,6 @@ const Dashboard = ({ products, bookings }) => {
   const [venues, setVenues] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [navigation, setNavigation] = useState([]);
-
-  // const test = []
-
-  // bookings.forEach(booking => {
-
-  // })
 
   useEffect(() => {
     if (parseInt(localStorage.getItem('type')) === 2) {
@@ -517,12 +511,12 @@ const Dashboard = ({ products, bookings }) => {
 
 export async function getStaticProps({ req, res }) {
   const venues = await API({
-    url: '/venue',
+    url: '/course',
     method: 'GET',
   });
 
   const bookings = await API({
-    url: '/booking',
+    url: '/enroll',
     method: 'GET',
   });
 

@@ -22,7 +22,7 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
 
   useEffect(() => {
     API({
-      url: '/venue',
+      url: '/course',
       method: 'GET',
     })
       .then((response) => {

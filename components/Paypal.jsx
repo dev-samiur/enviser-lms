@@ -65,7 +65,7 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
   const bookVenue = () => {
     API({
       method: 'POST',
-      url: '/booking',
+      url: '/enroll',
       data: {
         venueId,
         userId: localStorage.getItem('userId'),

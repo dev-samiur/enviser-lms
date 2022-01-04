@@ -33,7 +33,7 @@ export default function Home({ products }) {
 
 export async function getStaticProps({ req, res }) {
   const result = await API({
-    url: '/venue',
+    url: '/course',
     method: 'GET',
   });
 
