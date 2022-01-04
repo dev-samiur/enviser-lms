@@ -27,7 +27,7 @@ export default function BasicTable({ rows }) {
 
   const requestSearch = (searchedVal) => {
     const filteredRows = rows.filter((row) => {
-      return row.venue.toLowerCase().includes(searchedVal.toLowerCase());
+      return row.course.toLowerCase().includes(searchedVal.toLowerCase());
     });
     setRows(filteredRows);
   };
@@ -58,7 +58,7 @@ export default function BasicTable({ rows }) {
               {rows.map((row) => (
                 <TableRow key={row.date}>
                   <TableCell component="th" scope="row">
-                    {row.venue}
+                    {row.course}
                   </TableCell>
                   <TableCell align="center">{row.user}</TableCell>
                   <TableCell align="center">{row.date}</TableCell>

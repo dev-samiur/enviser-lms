@@ -10,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Product = ({ product, slots }) => {
+const Product = ({ product }) => {
   const [canBook, setCanBook] = useState(false);
 
   useEffect(() => {
@@ -23,9 +23,6 @@ const Product = ({ product, slots }) => {
 
   const router = useRouter();
   const { id } = router.query;
-  const [selectedSlot, setSelectedSlot] = useState(
-    slots.length ? slots[0].date : []
-  );
 
   return (
     <div className="bg-white">
@@ -111,16 +108,13 @@ const Product = ({ product, slots }) => {
                         venueId: id,
                         venueTitle: product.title,
                         price: product.price,
-                        capacity: product.capacity,
                         thumbnail: product.thumbnail,
-                        slot: selectedSlot,
                       },
                     }}
                   >
                     <button
                       type="button"
                       className="mt-8 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                      disabled={slots.length ? false : true}
                     >
                       Enroll Course
                     </button>
@@ -149,9 +143,9 @@ const Product = ({ product, slots }) => {
 
 export const getServerSideProps = async ({ params }) => {
   const resVenue = await API.get('/course/' + params.id);
-  const resSlots = await API.get('/slot/' + params.id);
+
   return {
-    props: { product: resVenue.data.success, slots: resSlots.data.success },
+    props: { product: resVenue.data.success },
   };
 };
 

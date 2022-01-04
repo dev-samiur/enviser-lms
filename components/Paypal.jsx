@@ -46,7 +46,7 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
       method: 'POST',
       url: '/transaction',
       data: {
-        venueId: venueId,
+        courseId: venueId,
         userId: localStorage.getItem('userId'),
 				paidBy: localStorage.getItem('email'),
         method: 'Paypal',
@@ -67,7 +67,7 @@ export default function Paypal({ venueId, venueTitle, price, date }) {
       method: 'POST',
       url: '/enroll',
       data: {
-        venueId,
+        courseId: venueId,
         userId: localStorage.getItem('userId'),
         date,
       },

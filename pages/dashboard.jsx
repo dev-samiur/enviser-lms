@@ -43,47 +43,48 @@ const Venues = ({ products }) => {
 
   return (
     <div className="flex flex-col sm:flex-row flex-wrap">
-      {products.map((product) => (
-        <div
-          key={product.id}
-          style={{
-            width: 300,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            margin: 10,
-            border: '1px solid #ccc',
-            borderRadius: 10,
-          }}
-        >
-          <div style={{ height: 250 }}>
-            <img
-              src={`./venues/${product.thumbnail}`}
-              alt={product.imageAlt}
-              className="w-full h-full object-center object-cover"
-            />
-          </div>
-          <h3 className="text-sm font-medium text-gray-900 text-center mt-5">
-            <Link href={`/product/${product.id}`}>{product.title}</Link>
-          </h3>
-          <div className="flex items-center mt-5">
-            {[0, 1, 2, 3, 4].map((rating) => (
-              <StarIcon
-                key={rating}
-                className={classNames(
-                  3.5 > rating ? 'text-yellow-400' : 'text-gray-200',
-                  'flex-shrink-0 h-5 w-5'
-                )}
-                aria-hidden="true"
+      {products &&
+        products.map((product) => (
+          <div
+            key={product.id}
+            style={{
+              width: 300,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              margin: 10,
+              border: '1px solid #ccc',
+              borderRadius: 10,
+            }}
+          >
+            <div style={{ height: 250 }}>
+              <img
+                src={`./venues/${product.thumbnail}`}
+                alt={product.imageAlt}
+                className="w-full h-full object-center object-cover"
               />
-            ))}
-          </div>
-          <div className="pb-5">
-            <p className="mt-5 text-base font-medium text-gray-900">
-              {product.price} BDT
-            </p>
-          </div>
-          {/* <div>
+            </div>
+            <h3 className="text-sm font-medium text-gray-900 text-center mt-5">
+              <Link href={`/product/${product.id}`}>{product.title}</Link>
+            </h3>
+            <div className="flex items-center mt-5">
+              {[0, 1, 2, 3, 4].map((rating) => (
+                <StarIcon
+                  key={rating}
+                  className={classNames(
+                    3.5 > rating ? 'text-yellow-400' : 'text-gray-200',
+                    'flex-shrink-0 h-5 w-5'
+                  )}
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+            <div className="pb-5">
+              <p className="mt-5 text-base font-medium text-gray-900">
+                {product.price} BDT
+              </p>
+            </div>
+            {/* <div>
             <button
               className="ml-5 mb-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDelete(product._id)}
@@ -91,15 +92,13 @@ const Venues = ({ products }) => {
               Delete
             </button>
           </div> */}
-        </div>
-      ))}
+          </div>
+        ))}
     </div>
   );
 };
 
 const Dashboard = ({ products, bookings }) => {
-  // console.log(products);
-  // console.log(bookings);
   const [showAddVenueForm, setShowAddVenueForm] = useState(false);
   const [showAddSlotForm, setShowAddSlotForm] = useState(false);
   const [openTab, setOpenTab] = useState(1);
@@ -115,7 +114,7 @@ const Dashboard = ({ products, bookings }) => {
         { name: 'Courses', href: '/', current: false },
       ]);
     } else {
-      setOpenTab(2);
+      setOpenTab(1);
       setNavigation([
         { name: 'Dashboard', href: '#', current: true },
         { name: 'Courses', href: '/', current: false },
@@ -125,7 +124,7 @@ const Dashboard = ({ products, bookings }) => {
 
   useEffect(() => {
     if (products) {
-      if (localStorage.getItem('type') === 2) {
+      if (parseInt(localStorage.getItem('type')) === 2) {
         setVenues(
           products.filter(
             (product) => product.owner === localStorage.getItem('userId')
@@ -137,13 +136,13 @@ const Dashboard = ({ products, bookings }) => {
         );
 
         let coursesEnrolledByCurrUser = bookedByCurrUser.map(
-          (item) => item.venue
+          (item) => item.course
         );
         const filteredProducts = [];
         coursesEnrolledByCurrUser = [...new Set(coursesEnrolledByCurrUser)];
         products.forEach((product) => {
           const exist = coursesEnrolledByCurrUser.includes(product.title);
-          if (!exist) filteredProducts.push(product);
+          if (exist) filteredProducts.push(product);
         });
         setVenues(filteredProducts);
       }
