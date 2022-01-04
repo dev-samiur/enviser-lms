@@ -28,7 +28,7 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
       .then((response) => {
         if (response.data.success) {
           setVenueOpts(response.data.success);
-          setVenue(response.data.success[0]._id);
+          setVenue(response.data.success[0].id);
         } else console.log('Error fetching bookings');
       })
       .catch((err) => {
@@ -106,7 +106,7 @@ const SlotForm = ({ showAddSlotForm, handleShowAddSlotForm }) => {
                   <div className="mt-1">
                     <select onChange={(e) => setVenue(e.target.value)}>
                       {venueOpts.map((opt) => (
-                        <option value={opt._id} key={opt._id}>
+                        <option value={opt.id} key={opt.id}>
                           {opt.title}
                         </option>
                       ))}

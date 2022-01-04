@@ -35,7 +35,7 @@ const Venues = ({ products }) => {
       .then((res) => {
         if (res.data.success) {
           alert('Venue deleted successfully');
-          products = products.filter((product) => product._id !== id);
+          products = products.filter((product) => product.id !== id);
         }
       })
       .catch((err) => console.log('Error'));
@@ -45,7 +45,7 @@ const Venues = ({ products }) => {
     <div className="flex flex-col sm:flex-row flex-wrap">
       {products.map((product) => (
         <div
-          key={product._id}
+          key={product.id}
           style={{
             width: 300,
             display: 'flex',
@@ -64,7 +64,7 @@ const Venues = ({ products }) => {
             />
           </div>
           <h3 className="text-sm font-medium text-gray-900 text-center mt-5">
-            <Link href={`/product/${product._id}`}>{product.title}</Link>
+            <Link href={`/product/${product.id}`}>{product.title}</Link>
           </h3>
           <div className="flex items-center mt-5">
             {[0, 1, 2, 3, 4].map((rating) => (

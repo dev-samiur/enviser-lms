@@ -76,7 +76,10 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
           alert('Successfully added');
           router.reload(window.location.pathname);
         }
-				else alert("Error")
+				else{
+					console.log(res.data)
+					alert("Error")
+				}
       })
       .catch((err) => alert('Error'));
   };

@@ -54,7 +54,7 @@ export default function BasicTable({ rows }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {rows && rows.map((row) => (
                 <TableRow key={row.date}>
                   <TableCell align="center">{row.method}</TableCell>
                   <TableCell align="center">{row.date}</TableCell>
