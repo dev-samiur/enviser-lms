@@ -29,28 +29,42 @@ function classNames(...classes) {
 
 const Venues = ({ products }) => {
   const router = useRouter();
-	const [showDeleteBtn, setShowDeleteBtn] = useState(false)
+  const [showDeleteBtn, setShowDeleteBtn] = useState(false);
+  const [showAddSlotForm, setShowAddSlotForm] = useState(false);
+  const [lessonUrl, setLessonUrl] = useState('');
 
-	useEffect(() => {
-		if(parseInt(localStorage.getItem('type')) === 2)
-			setShowDeleteBtn(true)
-	}, [])
+  useEffect(() => {
+    if (parseInt(localStorage.getItem('type')) === 2) setShowDeleteBtn(true);
+  }, []);
 
   const handleDelete = (id) => {
     API.delete('/course/' + id)
       .then((res) => {
         if (res.data.success) {
           alert('course deleted successfully');
-					router.reload(window.location.pathname);
+          router.reload(window.location.pathname);
           //products = products.filter((product) => product.id !== id);
-        }
-				else console.log(res.data)
+        } else console.log(res.data);
       })
       .catch((err) => console.log('Error'));
   };
 
+  const handleShowAddSlotForm = (open) => {
+    setShowAddSlotForm(open);
+  };
+
+  const showLesson = (lesson) => {
+    setLessonUrl(lesson);
+    handleShowAddSlotForm(true);
+  };
+
   return (
     <div className="flex flex-col sm:flex-row flex-wrap">
+      <SlotForm
+        showAddSlotForm={showAddSlotForm}
+        handleShowAddSlotForm={handleShowAddSlotForm}
+        lessonUrl={lessonUrl}
+      />
       {products &&
         products.map((product) => (
           <div
@@ -73,7 +87,14 @@ const Venues = ({ products }) => {
               />
             </div>
             <h3 className="text-sm font-medium text-gray-900 text-center mt-5">
-              <Link href={`/product/${product.id}`}>{product.title}</Link>
+              <Link href="#">
+                <span
+                  onClick={() => showLesson(product.lesson)}
+                  className="cursor-pointer"
+                >
+                  {product.title}
+                </span>
+              </Link>
             </h3>
             <div className="flex items-center mt-5">
               {[0, 1, 2, 3, 4].map((rating) => (
@@ -110,7 +131,6 @@ const Venues = ({ products }) => {
 
 const Dashboard = ({ products, bookings }) => {
   const [showAddVenueForm, setShowAddVenueForm] = useState(false);
-  const [showAddSlotForm, setShowAddSlotForm] = useState(false);
   const [openTab, setOpenTab] = useState(1);
   const [venues, setVenues] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -177,10 +197,6 @@ const Dashboard = ({ products, bookings }) => {
     setShowAddVenueForm(open);
   };
 
-  const handleShowAddSlotForm = (open) => {
-    setShowAddSlotForm(open);
-  };
-
   useEffect(() => {
     if (!localStorage.getItem('user')) Router.push('/signin');
   }, []);
@@ -194,10 +210,6 @@ const Dashboard = ({ products, bookings }) => {
         <Modal
           showAddVenueForm={showAddVenueForm}
           handleShowAddVenueForm={handleShowAddVenueForm}
-        />
-        <SlotForm
-          showAddSlotForm={showAddSlotForm}
-          handleShowAddSlotForm={handleShowAddSlotForm}
         />
         <Disclosure
           as="div"
