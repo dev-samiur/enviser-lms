@@ -72,8 +72,11 @@ const Modal = ({ showAddVenueForm, handleShowAddVenueForm }) => {
 
     API.post('/course', formData)
       .then((res) => {
-        alert('Successfully added');
-        router.reload(window.location.pathname);
+        if (res.data.success) {
+          alert('Successfully added');
+          router.reload(window.location.pathname);
+        }
+				else alert("Error")
       })
       .catch((err) => alert('Error'));
   };

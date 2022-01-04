@@ -8,7 +8,7 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState(1);
+  const [userType, setUserType] = useState(1);
 
   useEffect(() => {
     if (localStorage.getItem('user')) Router.push('/dashboard');
@@ -27,7 +27,7 @@ const SignUp = () => {
       alert('Enter valid fields');
       return;
     } else {
-      API.post('/auth/register', { username, email, password, type })
+      API.post('/auth/register', { username, email, password, userType })
         .then((res) => {
           if (res.data.success) {
             alert('Successfully signup');
@@ -125,22 +125,22 @@ const SignUp = () => {
                     <div className="space-y-1">
                       <div>
                         <label
-                          htmlFor="type"
+                          htmlFor="userType"
                           className="block text-sm font-medium text-gray-700"
                         >
                           Are you a
                         </label>
                         <select
-                          id="type"
-                          name="type"
+                          id="userType"
+                          name="userType"
                           className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                           onChange={(e) => {
-                            if (e.target.value === 'Venue Owner') setType(2);
-                            else setType(1);
+                            if (e.target.value === 'mentor') setUserType(2);
+                            else setUserType(1);
                           }}
                         >
-                          <option value="Customer">Student</option>
-                          <option value="Venue Owner">Mentor</option>
+                          <option value="student">Student</option>
+                          <option value="mentor">Mentor</option>
                         </select>
                       </div>
                     </div>
